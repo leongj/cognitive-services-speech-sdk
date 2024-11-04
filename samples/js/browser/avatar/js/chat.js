@@ -21,7 +21,7 @@ var imgUrl = ""
 // Connect to avatar service
 function connectAvatar() {
     const cogSvcRegion = document.getElementById('region').value
-    const cogSvcSubKey = document.getElementById('APIKey').value
+    const cogSvcSubKey = config.azureSpeechAPIKey
     if (cogSvcSubKey === '') {
         alert('Please fill in the API key of your speech resource.')
         return
@@ -62,9 +62,9 @@ function connectAvatar() {
     var autoDetectSourceLanguageConfig = SpeechSDK.AutoDetectSourceLanguageConfig.fromLanguages(sttLocales)
     speechRecognizer = SpeechSDK.SpeechRecognizer.FromConfig(speechRecognitionConfig, autoDetectSourceLanguageConfig, SpeechSDK.AudioConfig.fromDefaultMicrophoneInput())
 
-    const azureOpenAIEndpoint = document.getElementById('azureOpenAIEndpoint').value
-    const azureOpenAIApiKey = document.getElementById('azureOpenAIApiKey').value
-    const azureOpenAIDeploymentName = document.getElementById('azureOpenAIDeploymentName').value
+    const azureOpenAIEndpoint = config.azureOpenAIEndpoint
+    const azureOpenAIApiKey = config.azureOpenAIApiKey
+    const azureOpenAIDeploymentName = config.azureOpenAIDeploymentName
     if (azureOpenAIEndpoint === '' || azureOpenAIApiKey === '' || azureOpenAIDeploymentName === '') {
         alert('Please fill in the Azure OpenAI endpoint, API key and deployment name.')
         return
@@ -182,7 +182,7 @@ function setupWebRTC(iceServerUrl, iceServerUsername, iceServerCredential) {
                 console.log(`WebRTC ${event.track.kind} channel connected.`)
                 document.getElementById('microphone').disabled = false
                 document.getElementById('stopSession').disabled = false
-                document.getElementById('remoteVideo').style.width = '960px'
+                document.getElementById('remoteVideo').style.width = '1280px'
                 document.getElementById('chatHistory').hidden = false
                 document.getElementById('showTypeMessage').disabled = false
 
@@ -411,11 +411,20 @@ function handleUserQuery(userQuery, userQueryHTML, imgUrlPath) {
         speak(getQuickReply(), 2000)
     }
 
-    const azureOpenAIEndpoint = document.getElementById('azureOpenAIEndpoint').value
-    const azureOpenAIApiKey = document.getElementById('azureOpenAIApiKey').value
-    const azureOpenAIDeploymentName = document.getElementById('azureOpenAIDeploymentName').value
+    const azureOpenAIEndpoint = config.azureOpenAIEndpoint
+    const azureOpenAIApiKey = config.azureOpenAIApiKey
+    const azureOpenAIDeploymentName = config.azureOpenAIDeploymentName
+
+    // Log the above consts to console
+    console.log(`Azure OpenAI Endpoint: ${azureOpenAIEndpoint}`)
+    console.log(`Azure OpenAI API Key: ${azureOpenAIApiKey}`)
+    console.log(`Azure OpenAI Deployment Name: ${azureOpenAIDeploymentName}`)
 
     let url = "{AOAIEndpoint}/openai/deployments/{AOAIDeployment}/chat/completions?api-version=2023-06-01-preview".replace("{AOAIEndpoint}", azureOpenAIEndpoint).replace("{AOAIDeployment}", azureOpenAIDeploymentName)
+
+    // log the URL to console
+    console.log(`URL: ${url}`)
+
     let body = JSON.stringify({
         messages: messages,
         stream: true
