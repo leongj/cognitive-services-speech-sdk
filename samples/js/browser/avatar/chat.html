@@ -42,32 +42,29 @@
 
     <div class="flex-container">
       <div class="question-container">
-        <button onclick="window.sendPredefinedMessage('Please introduce yourself to the forum.')">Q1</button>
-        <div>Please introduce yourself to the forum.</div>
-      </div>
-      <div class="question-container">
-        <button onclick="window.sendPredefinedMessage('What is the biggest challenge facing Australian policing?')">Q2</button>
-        <div>What is the biggest challenge facing Australian policing?</div>
-      </div>
-      <div class="question-container">
-        <button onclick="window.sendPredefinedMessage('For a laugh, tell us who you think is the best Australian commissioner and why?')">Q3</button>
-        <div>For a laugh, tell us who you think is the best Australian commissioner and why?</div>
-      </div>
-      <div class="question-container">
-        <button
-          onclick="window.sendPredefinedMessage('Haha good one. Serious question - will current international events effect police in Australia. Give an example?')"
-        >
-          Q4
+        <button onclick="window.sendPredefinedMessage('Please introduce yourself to the forum?')">
+          Please introduce yourself to the forum?
         </button>
-        <div>Haha good one. Serious question - will current international events effect police in Australia. Give an example?</div>
       </div>
       <div class="question-container">
-        <button
-          onclick="window.sendPredefinedMessage('Ok to finish with a laugh - Can you tell us why the public should trust a commissioner who dyes their hair?')"
-        >
-          Q5
+        <button onclick="window.sendPredefinedMessage('What is the biggest challenge facing Australian policing?')">
+          What is the biggest challenge facing Australian policing?
         </button>
-        <div>Ok to finish with a laugh - Can you tell us why the public should trust a commissioner who dyes their hair?</div>
+      </div>
+      <div class="question-container">
+        <button onclick="window.sendPredefinedMessage('For a laugh, tell us who you think is the best Australian commissioner and why?')">
+          For a laugh, tell us who you think is the best Australian commissioner and why?
+        </button>
+      </div>
+      <div class="question-container">
+        <button onclick="window.sendPredefinedMessage('Serious question - will current international events effect police in Australia. Give an example?')">
+          Serious question - will current international events effect police in Australia. Give an example?
+        </button>
+      </div>
+      <div class="question-container">
+        <button onclick="window.sendPredefinedMessage('Ok to finish with a laugh - Can you tell us why the public should trust a commissioner who dyes their hair?')">
+          Ok to finish with a laugh - Can you tell us why the public should trust a commissioner who dyes their hair?
+        </button>
       </div>
     </div>
 
@@ -77,7 +74,7 @@
       </div>
       <div
         id="userMessageBox"
-        style="width: 600px; min-height: 60px; max-height: 200px; border: 1px solid; overflow-y: scroll; padding: 10px"
+        style="width: 900px; min-height: 60px; max-height: 200px; border: 1px solid; overflow-y: scroll; padding: 10px"
         hidden
         type="text"
         contenteditable="true"
@@ -126,6 +123,7 @@
         <textarea id="prompt" style="width: 640px">
 You are an AI Commissioner of an Australian Police Force. You are at a conference and on stage in a question time with your real life peers, the commissioners of all the state police forces. 
     - When you respond to questions, respond in an appropriate way to the setting.
+    - Begin each response with a thinking pause, e.g. "uh-huh", "let me think", "that's a good question", "Aha ok" (e.g. if the user has asked a funny or light-hearted question).
     - Keep your responses brief.</textarea
         >
         <div style="width: 300px"><input type="checkbox" id="enableOyd" onchange="window.updataEnableOyd()" />Enable On Your Data<br /></div>

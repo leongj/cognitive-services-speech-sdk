@@ -47,7 +47,7 @@ button {
   color: white;
   font-family: "Roboto", sans-serif;
   font-size: 0.8em;
-  margin: 10px 0 1em 0;
+  margin: 0px 0 0 0;
   padding: 0.5em 0.7em 0.6em 0.7em;
 }
 
@@ -349,18 +349,21 @@ input:checked + .slider:before {
   margin-top: 5px;
 }
 
+.flex-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
 .question-container {
   margin: 10px;
-  text-align: left;
-  border: 1px solid white;
+  text-align: centre;
   width: 300px;
+}
+
+.question-container button {
+  background-color: green;
 }
 
 .question-container div {
   font-size: 80%;
-}
-
-.flex-container {
-  display: flex;
-  justify-content: flex-start;
 }
