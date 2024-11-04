@@ -1,0 +1,6 @@
+const config = {
+    azureSpeechAPIKey: "<speech_key>",
+    azureOpenAIApiKey: "<aoai_key>",
+    azureOpenAIEndpoint: "https://<aoai_resource>.openai.azure.com/",
+    azureOpenAIDeploymentName: "<deployment>"
+};
