@@ -32,17 +32,52 @@
       <div id="remoteVideo"></div>
     </div>
 
-    <button id="startSession" onclick="window.startSession()">Open Avatar Session</button>
-    <button id="microphone" onclick="window.microphone()" disabled>Start Microphone</button>
-    <button id="stopSpeaking" onclick="stopSpeaking()" disabled>Stop Speaking</button>
-    <button id="clearChatHistory" onclick="window.clearChatHistory()">Clear Chat History</button>
-    <button id="stopSession" onclick="window.stopSession()" disabled>Close Avatar Session</button>
+    <div>
+      <button id="startSession" onclick="window.startSession()">Open Avatar Session</button>
+      <button id="microphone" onclick="window.microphone()" disabled>Start Microphone</button>
+      <button id="stopSpeaking" onclick="stopSpeaking()" disabled>Stop Speaking</button>
+      <button id="clearChatHistory" onclick="window.clearChatHistory()">Clear Chat History</button>
+      <button id="stopSession" onclick="window.stopSession()" disabled>Close Avatar Session</button>
+    </div>
+
+    <div class="flex-container">
+      <div class="question-container">
+        <button onclick="window.sendPredefinedMessage('Please introduce yourself to the forum.')">Q1</button>
+        <div>Please introduce yourself to the forum.</div>
+      </div>
+      <div class="question-container">
+        <button onclick="window.sendPredefinedMessage('What is the biggest challenge facing Australian policing?')">Q2</button>
+        <div>What is the biggest challenge facing Australian policing?</div>
+      </div>
+      <div class="question-container">
+        <button onclick="window.sendPredefinedMessage('For a laugh, tell us who you think is the best Australian commissioner and why?')">Q3</button>
+        <div>For a laugh, tell us who you think is the best Australian commissioner and why?</div>
+      </div>
+      <div class="question-container">
+        <button
+          onclick="window.sendPredefinedMessage('Haha good one. Serious question - will current international events effect police in Australia. Give an example?')"
+        >
+          Q4
+        </button>
+        <div>Haha good one. Serious question - will current international events effect police in Australia. Give an example?</div>
+      </div>
+      <div class="question-container">
+        <button
+          onclick="window.sendPredefinedMessage('Ok to finish with a laugh - Can you tell us why the public should trust a commissioner who dyes their hair?')"
+        >
+          Q5
+        </button>
+        <div>Ok to finish with a laugh - Can you tell us why the public should trust a commissioner who dyes their hair?</div>
+      </div>
+    </div>
 
     <div margin-top="5px">
-      <div id="showTypeMessageCheckbox"><input type="checkbox" id="showTypeMessage" onchange="window.updateTypeMessageBox()" disabled />Type Message<br /></div>
+      <div id="showTypeMessageCheckbox">
+        <input type="checkbox" id="showTypeMessage" onchange="window.updateTypeMessageBox()" disabled />Type a message<br />
+      </div>
       <div
         id="userMessageBox"
-        style="width: 940px; min-height: 150px; max-height: 200px; border: 1px solid; overflow-y: scroll; padding: 10px"
+        style="width: 600px; min-height: 60px; max-height: 200px; border: 1px solid; overflow-y: scroll; padding: 10px"
         hidden
         type="text"
         contenteditable="true"

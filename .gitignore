@@ -3,6 +3,13 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Local Env config
+.env
+config.js
+
+# AZD config
+.azure/
+
 # User-specific files
 *.suo
 *.user
@@ -278,6 +285,9 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+# Python Environments
+*.venv/
 
 # Cake - Uncomment if you are using it
 # tools/**

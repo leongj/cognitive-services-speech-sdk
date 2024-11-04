@@ -788,3 +788,7 @@ window.updatePrivateEndpoint = () => {
         document.getElementById('showPrivateEndpointCheckBox').hidden = true
     }
 }
+
+window.sendPredefinedMessage = (message) => {
+    handleUserQuery(message, "", "")
+}
