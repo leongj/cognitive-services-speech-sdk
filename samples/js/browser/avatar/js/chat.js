@@ -48,8 +48,11 @@ function connectAvatar() {
     // setup AvatarConfig
     const avatarConfig = new SpeechSDK.AvatarConfig(talkingAvatarCharacter, talkingAvatarStyle)
     avatarConfig.customized = document.getElementById('customizedAvatar').checked
-    avatarConfig.backgroundColor = "#1F577CFF" // set background color to transparent
+    // avatarConfig.backgroundColor = "#1F567CFF" // set background to ANZPAA blue
+    // avatarConfig.backgroundColor = "#1C4E70FF" // set background to ANZPAA blue darkened
+    // avatarConfig.backgroundColor = "#266A98FF" // set background to ANZPAA blue lighter
     // avatarConfig.backgroundImage = new URL("https://wallpaperaccess.com/full/429865.jpg")
+    avatarConfig.backgroundImage = new URL("https://stbgstore24242.blob.core.windows.net/background/54034578-5ffa-4c07-b6a5-9c68d99659c3.png")
 
     avatarSynthesizer = new SpeechSDK.AvatarSynthesizer(speechSynthesisConfig, avatarConfig)
     avatarSynthesizer.avatarEventReceived = function (s, e) {
