@@ -42,6 +42,30 @@
         }
     });
 
+
+    // Create websocket connection
+    const WebSocket = require('ws');
+    const wss =  new WebSocket.Server({ port: 9191 });
+    wss.on('connection', (ws) => {
+        console.log(`Client connected`);
+        ws.on('message', (message) => {
+            //log the received message and send it back to the client
+            console.log('received: %s', message);
+            wss.clients.forEach((client) => {
+                if (client !== ws && client.readyState === WebSocket.OPEN) {
+                    client.send(message,{ binary: false });
+                }
+            });
+        });
+        ws.on('close', function () {
+            console.log('Client disconnected');
+        });
+    });
+    wss.on('error', function error(err) {
+        console.error('Server error:', err);
+    });
+
+
     app.listen(3001, () => {
         console.log('Express server is running on localhost:3001');
     });

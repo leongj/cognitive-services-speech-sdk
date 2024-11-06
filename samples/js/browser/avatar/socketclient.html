@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- To run
+1. run `npm run server` in the server directory which the web socket server is spun up
+2. load the avatar chat html page in the browser which will auto connect to the web socket server
+3. load this page locally in browser  which will auto connect to the web socket server
+
+Note: it's point to localhost:9191 atm, change at server code, the avatar chat html and here if you want
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Client</title>
+    <style>
+        h1 {
+            color: green;
+        }
+
+        .container {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Chat Avatar Backdoor</h1>
+    <div class="container">
+        <textarea id="messageInput1" rows="4" cols="50"></textarea>
+        <button onclick="sendMessage('messageInput1')">Send</button>
+        <div id="output"></div>
+    </div>
+
+    <div class="container">
+        <textarea id="messageInput2" rows="4" cols="50"></textarea>
+        <button onclick="sendMessage('messageInput2')">Send</button>
+        <div id="output"></div>
+    </div>
+
+    <div class="container">
+        <textarea id="messageInput3" rows="4" cols="50"></textarea>
+        <button onclick="sendMessage('messageInput3')">Send</button>
+        <div id="output"></div>
+    </div>
+
+    <div class="container">
+        <textarea id="messageInput4" rows="4" cols="50"></textarea>
+        <button onclick="sendMessage('messageInput4')">Send</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        const socket = new WebSocket('ws://localhost:9191');
+        socket.onopen = function (event) {
+            console.log('You are Connected to WebSocket Server');
+        };
+
+        socket.onmessage = function (event) {
+            console.log('Received message from server:', event.data);
+        };
+
+        socket.onclose = function (event) {
+            console.log('Disconnected from WebSocket server');
+        };
+
+        function sendMessage(htmlElementId) {
+            const messageInput = document.getElementById(htmlElementId);
+            const message = messageInput.value;
+            socket.send(message);
+        }
+    </script>
+</body>
+
+</html>
