@@ -20,9 +20,9 @@ var imgUrl = ""
 
 // Connect to avatar service
 function connectAvatar() {
-    const cogSvcRegion = document.getElementById('region').value
-    const cogSvcSubKey = config.azureSpeechAPIKey
-    if (cogSvcSubKey === '') {
+    const speechRegion = config.azureSpeechRegion
+    const speechKey = config.azureSpeechAPIKey
+    if (speechKey === '') {
         alert('Please fill in the API key of your speech resource.')
         return
     }
@@ -36,16 +36,21 @@ function connectAvatar() {
 
     let speechSynthesisConfig
     if (privateEndpointEnabled) {
-        speechSynthesisConfig = SpeechSDK.SpeechConfig.fromEndpoint(new URL(`wss://${privateEndpoint}/tts/cognitiveservices/websocket/v1?enableTalkingAvatar=true`), cogSvcSubKey) 
+        speechSynthesisConfig = SpeechSDK.SpeechConfig.fromEndpoint(new URL(`wss://${privateEndpoint}/tts/cognitiveservices/websocket/v1?enableTalkingAvatar=true`), speechKey) 
     } else {
-        speechSynthesisConfig = SpeechSDK.SpeechConfig.fromSubscription(cogSvcSubKey, cogSvcRegion)
+        speechSynthesisConfig = SpeechSDK.SpeechConfig.fromSubscription(speechKey, speechRegion)
     }
     speechSynthesisConfig.endpointId = document.getElementById('customVoiceEndpointId').value
 
     const talkingAvatarCharacter = document.getElementById('talkingAvatarCharacter').value
     const talkingAvatarStyle = document.getElementById('talkingAvatarStyle').value
+
+    // setup AvatarConfig
     const avatarConfig = new SpeechSDK.AvatarConfig(talkingAvatarCharacter, talkingAvatarStyle)
     avatarConfig.customized = document.getElementById('customizedAvatar').checked
+    avatarConfig.backgroundColor = "#1F577CFF" // set background color to transparent
+    // avatarConfig.backgroundImage = new URL("https://wallpaperaccess.com/full/429865.jpg")
+
     avatarSynthesizer = new SpeechSDK.AvatarSynthesizer(speechSynthesisConfig, avatarConfig)
     avatarSynthesizer.avatarEventReceived = function (s, e) {
         var offsetMessage = ", offset from session start: " + e.offset / 10000 + "ms."
@@ -56,7 +61,7 @@ function connectAvatar() {
         console.log("Event received: " + e.description + offsetMessage)
     }
 
-    const speechRecognitionConfig = SpeechSDK.SpeechConfig.fromEndpoint(new URL(`wss://${cogSvcRegion}.stt.speech.microsoft.com/speech/universal/v2`), cogSvcSubKey)
+    const speechRecognitionConfig = SpeechSDK.SpeechConfig.fromEndpoint(new URL(`wss://${speechRegion}.stt.speech.microsoft.com/speech/universal/v2`), speechKey)
     speechRecognitionConfig.setProperty(SpeechSDK.PropertyId.SpeechServiceConnection_LanguageIdMode, "Continuous")
     var sttLocales = document.getElementById('sttLocales').value.split(',')
     var autoDetectSourceLanguageConfig = SpeechSDK.AutoDetectSourceLanguageConfig.fromLanguages(sttLocales)
@@ -96,9 +101,9 @@ function connectAvatar() {
     if (privateEndpointEnabled) {
         xhr.open("GET", `https://${privateEndpoint}/tts/cognitiveservices/avatar/relay/token/v1`)
     } else {
-        xhr.open("GET", `https://${cogSvcRegion}.tts.speech.microsoft.com/cognitiveservices/avatar/relay/token/v1`)
+        xhr.open("GET", `https://${speechRegion}.tts.speech.microsoft.com/cognitiveservices/avatar/relay/token/v1`)
     }
-    xhr.setRequestHeader("Ocp-Apim-Subscription-Key", cogSvcSubKey)
+    xhr.setRequestHeader("Ocp-Apim-Subscription-Key", speechKey)
     xhr.addEventListener("readystatechange", function() {
         if (this.readyState === 4) {
             const responseData = JSON.parse(this.responseText)

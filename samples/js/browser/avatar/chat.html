@@ -89,14 +89,15 @@
       <summary>Settings</summary>
       <div id="configuration">
         <h2 style="width: 300px">Azure Speech Resource</h2>
-        <label style="font-size: medium" for="region">Region:</label>
+        <i>Region and Key are now set in js/config.js</i><br /><br />
+        <!-- <label style="font-size: medium" for="region">Region:</label>
         <select id="region" style="font-size: medium">
           <option value="southeastasia">Southeast Asia</option>
           <option value="westus2">West US 2</option>
           <option value="westeurope">West Europe</option>
         </select>
         <label style="font-size: medium" for="APIKey">API Key:</label>
-        <input id="APIKey" type="password" size="32" style="font-size: medium" value="" />
+        <input id="APIKey" type="password" size="32" style="font-size: medium" value="" /> -->
         <div style="width: 300px">
           <input type="checkbox" id="enablePrivateEndpoint" onchange="window.updatePrivateEndpoint()" />Enable Private Endpoint<br />
         </div>
@@ -113,17 +114,18 @@
         <br />
 
         <h2 style="width: 300px">Azure OpenAI Resource</h2>
-        <label style="font-size: medium" for="azureOpenAIEndpoint">Endpoint:</label>
+        <i>Settings are now in js/config.js</i><br /><br />
+        <!-- <label style="font-size: medium" for="azureOpenAIEndpoint">Endpoint:</label>
         <input id="azureOpenAIEndpoint" type="text" size="64" style="font-size: medium" value="https://oai-shared-aueast-2222.openai.azure.com/" /><br />
         <label style="font-size: medium" for="azureOpenAIApiKey">API Key:</label>
         <input id="azureOpenAIApiKey" type="password" size="32" style="font-size: medium" value="" /><br />
         <label style="font-size: medium" for="azureOpenAIDeploymentName">Deployment Name:</label>
-        <input id="azureOpenAIDeploymentName" type="text" size="32" style="font-size: medium" value="gpt-4o-global" /><br />
+        <input id="azureOpenAIDeploymentName" type="text" size="32" style="font-size: medium" value="gpt-4o-global" /><br /> -->
         <label style="font-size: medium" for="prompt">System Prompt:</label><br />
-        <textarea id="prompt" style="width: 640px">
+        <textarea id="prompt" style="width: 640px; height: 150px;">
 You are an AI Commissioner of an Australian Police Force. You are at a conference and on stage in a question time with your real life peers, the commissioners of all the state police forces. 
     - When you respond to questions, respond in an appropriate way to the setting.
-    - Begin each response with a thinking pause, e.g. "uh-huh", "let me think", "that's a good question", "Aha ok" (e.g. if the user has asked a funny or light-hearted question).
+    - Begin each response with a thinking pause, e.g. "uh-huh", "let me think", "that's a good question", "hmmm" (e.g. if the user has asked a funny or light-hearted question).
     - Keep your responses brief.</textarea
         >
         <div style="width: 300px"><input type="checkbox" id="enableOyd" onchange="window.updataEnableOyd()" />Enable On Your Data<br /></div>
@@ -144,7 +146,7 @@ You are an AI Commissioner of an Australian Police Force. You are at a conferenc
         <label style="font-size: medium" for="sttLocale">STT Locale(s):</label>
         <input id="sttLocales" type="text" size="64" style="font-size: medium" value="en-US,de-DE,es-ES,fr-FR,it-IT,ja-JP,ko-KR,zh-CN" /><br />
         <label style="font-size: medium" for="ttsVoice">TTS Voice:</label>
-        <input id="ttsVoice" type="text" size="32" style="font-size: medium" value="en-US-AvaMultilingualNeural" /><br />
+        <input id="ttsVoice" type="text" size="32" style="font-size: medium" value="en-US-Andrew:DragonHDLatestNeural" /><br />
         <label style="font-size: medium" for="customVoiceEndpointId">Custom Voice Deployment ID (Endpoint ID):</label>
         <input id="customVoiceEndpointId" type="text" size="32" style="font-size: medium" value="" /><br />
         <label style="font-size: medium" for="personalVoiceSpeakerProfileID">Personal Voice Speaker Profile ID:</label>
@@ -154,10 +156,10 @@ You are an AI Commissioner of an Australian Police Force. You are at a conferenc
 
         <h2 style="width: 300px">Avatar Configuration</h2>
         <label style="font-size: medium" for="talkingAvatarCharacter">Avatar Character:</label>
-        <input id="talkingAvatarCharacter" type="text" size="16" style="font-size: medium" value="lisa" /><br />
+        <input id="talkingAvatarCharacter" type="text" size="16" style="font-size: medium" value="David" /><br />
         <label style="font-size: medium" for="talkingAvatarStyle">Avatar Style:</label>
-        <input id="talkingAvatarStyle" type="text" size="16" style="font-size: medium" value="casual-sitting" /><br />
-        <div style="width: 200px"><input type="checkbox" id="customizedAvatar" />Custom Avatar<br /></div>
+        <input id="talkingAvatarStyle" type="text" size="16" style="font-size: medium" value="formal-sitting" /><br />
+        <div style="width: 200px"><input type="checkbox" id="customizedAvatar" checked />Custom Avatar<br /></div>
         <div style="width: 200px"><input type="checkbox" id="autoReconnectAvatar" />Auto Reconnect<br /></div>
         <div style="width: 200px">
           <input type="checkbox" id="useLocalVideoForIdle" onchange="window.updateLocalVideoForIdle()" />Use Local Video for Idle<br />
