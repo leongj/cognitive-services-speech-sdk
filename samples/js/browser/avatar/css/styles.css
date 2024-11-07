@@ -97,13 +97,11 @@ h1 {
 }
 
 h2 {
-  color: #444;
   font-weight: 500;
 }
 
 h3 {
   border-top: 1px solid #eee;
-  color: #666;
   font-weight: 500;
   margin: 10px 0 10px 0;
   white-space: nowrap;

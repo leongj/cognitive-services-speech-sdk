@@ -49,10 +49,9 @@ function connectAvatar() {
     const avatarConfig = new SpeechSDK.AvatarConfig(talkingAvatarCharacter, talkingAvatarStyle)
     avatarConfig.customized = document.getElementById('customizedAvatar').checked
     // avatarConfig.backgroundColor = "#1F567CFF" // set background to ANZPAA blue
-    // avatarConfig.backgroundColor = "#1C4E70FF" // set background to ANZPAA blue darkened
-    // avatarConfig.backgroundColor = "#266A98FF" // set background to ANZPAA blue lighter
-    // avatarConfig.backgroundImage = new URL("https://wallpaperaccess.com/full/429865.jpg")
-    avatarConfig.backgroundImage = new URL("https://stbgstore24242.blob.core.windows.net/background/54034578-5ffa-4c07-b6a5-9c68d99659c3.png")
+    avatarConfig.backgroundColor = "#266A98FF" // set background to ANZPAA blue lighter
+    // avatarConfig.backgroundImage = new URL("https://wallpaperaccess.com/full/429865.jpg")  // example background image
+    // avatarConfig.backgroundImage = new URL("https://stbgstore24242.blob.core.windows.net/background/54034578-5ffa-4c07-b6a5-9c68d99659c3.png")
 
     avatarSynthesizer = new SpeechSDK.AvatarSynthesizer(speechSynthesisConfig, avatarConfig)
     avatarSynthesizer.avatarEventReceived = function (s, e) {
@@ -171,6 +170,7 @@ function setupWebRTC(iceServerUrl, iceServerUsername, iceServerCredential) {
         if (event.track.kind === 'video') {
             let videoElement = document.createElement('video')
             videoElement.id = 'videoPlayer'
+            videoElement.style.height = '540px'
             videoElement.srcObject = event.streams[0]
             videoElement.autoplay = true
             videoElement.playsInline = true
@@ -190,7 +190,7 @@ function setupWebRTC(iceServerUrl, iceServerUsername, iceServerCredential) {
                 console.log(`WebRTC ${event.track.kind} channel connected.`)
                 document.getElementById('microphone').disabled = false
                 document.getElementById('stopSession').disabled = false
-                document.getElementById('remoteVideo').style.width = '1280px'
+                document.getElementById('remoteVideo').style.width = '960px'
                 document.getElementById('chatHistory').hidden = false
                 document.getElementById('showTypeMessage').disabled = false
 
@@ -630,6 +630,8 @@ window.onload = () => {
         checkHung()
         checkLastSpeak()
     }, 2000) // Check session activity every 2 seconds
+
+    document.getElementById('showChatText').addEventListener('change', window.updateShowChatText)
 }
 
 window.startSession = () => {
@@ -794,6 +796,15 @@ window.updatePrivateEndpoint = () => {
         document.getElementById('showPrivateEndpointCheckBox').hidden = false
     } else {
         document.getElementById('showPrivateEndpointCheckBox').hidden = true
+    }
+}
+
+window.updateShowChatText = () => {
+    const chatHistory = document.getElementById('chatHistory')
+    if (document.getElementById('showChatText').checked) {
+        chatHistory.hidden = false
+    } else {
+        chatHistory.hidden = true
     }
 }
 
