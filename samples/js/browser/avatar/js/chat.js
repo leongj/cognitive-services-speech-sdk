@@ -423,26 +423,21 @@ function handleUserQuery(userQuery, userQueryHTML, imgUrlPath) {
     const azureOpenAIApiKey = config.azureOpenAIApiKey
     const azureOpenAIDeploymentName = config.azureOpenAIDeploymentName
 
-    // Log the above consts to console
-    console.log(`Azure OpenAI Endpoint: ${azureOpenAIEndpoint}`)
-    console.log(`Azure OpenAI API Key: ${azureOpenAIApiKey}`)
-    console.log(`Azure OpenAI Deployment Name: ${azureOpenAIDeploymentName}`)
-
-    let url = "{AOAIEndpoint}/openai/deployments/{AOAIDeployment}/chat/completions?api-version=2023-06-01-preview".replace("{AOAIEndpoint}", azureOpenAIEndpoint).replace("{AOAIDeployment}", azureOpenAIDeploymentName)
-
-    // log the URL to console
-    console.log(`URL: ${url}`)
+    let url = "{AOAIEndpoint}/openai/deployments/{AOAIDeployment}/chat/completions?api-version=2024-10-01-preview".replace("{AOAIEndpoint}", azureOpenAIEndpoint).replace("{AOAIDeployment}", azureOpenAIDeploymentName)
 
     let body = JSON.stringify({
         messages: messages,
+        temperature: 0,
         stream: true
     })
 
+    // Only if 'bring your data' scenario is enabled, we need to add data sources to the request body and use completions extensions API
     if (dataSources.length > 0) {
         url = "{AOAIEndpoint}/openai/deployments/{AOAIDeployment}/extensions/chat/completions?api-version=2023-06-01-preview".replace("{AOAIEndpoint}", azureOpenAIEndpoint).replace("{AOAIDeployment}", azureOpenAIDeploymentName)
         body = JSON.stringify({
             dataSources: dataSources,
             messages: messages,
+            temperature: 0,
             stream: true
         })
     }
