@@ -9,7 +9,7 @@
     <script src="./js/chat.js"></script>
     <style>
       body {
-        background-color: #1F567C;
+        background-color: #1f567c;
         color: white;
       }
     </style>
@@ -17,9 +17,9 @@
   <body>
     <!-- <h1>Talking Avatar Chat Demo</h1>
  -->
-    <div id="videoContainer" style="position: relative; display: flex;">
-      <div id="remoteVideo" style="width: 960px; height: 540px;"></div>
-      <div id="overlayArea" style="flex: 1; padding-left: 10px;">
+    <div id="videoContainer" style="position: relative; display: flex">
+      <div id="remoteVideo" style="width: 960px; height: 540px"></div>
+      <div id="overlayArea" style="flex: 1; padding-left: 10px">
         <div
           id="chatHistory"
           style="width: 300px; height: 540px; font-size: medium; border: none; resize: none; background-color: transparent; overflow: hidden"
@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <div style="margin-top: 20px;">
+    <div style="margin-top: 20px">
       <button id="startSession" onclick="window.startSession()">Open Avatar Session</button>
       <button id="microphone" onclick="window.microphone()" disabled>Start Microphone</button>
       <button id="stopSpeaking" onclick="stopSpeaking()" disabled>Stop Speaking</button>
@@ -39,38 +39,38 @@
 
     <div class="flex-container">
       <div class="question-container">
-        <button onclick="window.sendPredefinedMessage('Please introduce yourself to the forum?')">
-          Please introduce yourself to the forum?
-        </button>
+        <button onclick="window.sendPredefinedMessage('Please introduce yourself to the forum?')">Please <span style="color: blue">introduce</span> yourself to the forum?</button>
       </div>
       <div class="question-container">
         <button onclick="window.sendPredefinedMessage('What is the biggest challenge facing Australian & NZ policing?')">
-          What is the biggest challenge facing Australian & NZ policing?
+            What is the <span style="color: blue">biggest challenge</span> facing Australian & NZ policing?
         </button>
       </div>
       <div class="question-container">
-        <button onclick="window.sendPredefinedMessage('Provide your perspective on the opportunity and risk for AI in the context of Australian & NZ policing?')">
-          Provide your perspective on the opportunity and risk for AI in the context of Australian & NZ policing?
+        <button
+          onclick="window.sendPredefinedMessage('Provide your perspective on the opportunity and risk for AI in the context of Australian & NZ policing?')"
+        >
+          Provide your perspective on the <span style="color: blue">opportunity and risk for AI</span> in the context of Australian & NZ policing?
         </button>
       </div>
       <div class="question-container">
         <button onclick="window.sendPredefinedMessage('Could you be the next commissioner for an Australian or NZ police jurisdiction?')">
-          Could you be the next commissioner for an Australian or NZ police jurisdiction?
+          Could you be the <span style="color: blue">next commissioner</span> for an Australian or NZ police jurisdiction?
         </button>
       </div>
       <div class="question-container">
         <button onclick="window.sendPredefinedMessage('For a laugh - which state jurisdiction in Australian or NZ has the best wine? (be a little witty)')">
-          For a laugh - which state jurisdiction in Australian or NZ has the best wine? (be a little witty)
+          For a laugh - which state jurisdiction in Australian or NZ has the <span style="color: blue">best wine</span>? (be a little witty)
         </button>
       </div>
       <div class="question-container">
         <button onclick="window.sendPredefinedMessage('I understand you have to leave us now, thanks for joining us, AI commissioner')">
-          I understand you have to leave us now, thanks for joining us, AI commissioner
+          I understand you have to <span style="color: blue">leave us</span> now, thanks for joining us, AI commissioner
         </button>
       </div>
     </div>
 
-    <div style="margin-top: 5px;">
+    <div style="margin-top: 5px">
       <div id="showTypeMessageCheckbox">
         <input type="checkbox" id="showTypeMessage" onchange="window.updateTypeMessageBox()" disabled />Type a message<br />
       </div>
@@ -124,13 +124,14 @@
         <label style="font-size: medium" for="azureOpenAIDeploymentName">Deployment Name:</label>
         <input id="azureOpenAIDeploymentName" type="text" size="32" style="font-size: medium" value="gpt-4o-global" /><br /> -->
         <label style="font-size: medium" for="prompt">System Prompt:</label><br />
-        <textarea id="prompt" style="width: 640px; height: 150px;">
+        <textarea id="prompt" style="width: 640px; height: 150px">
 You are a "Virtual AI Commissioner" of an Australian Police Force. You are at a conference and on stage in a question time with your real life peers, the commissioners of all the state police forces. 
     - Your name is "Virtual AI Commissioner".
     - When you respond to questions, respond in an appropriate way to the setting.
     - Begin each response with a thinking pause, e.g. "that's a good question", "let me think", "hmmm" (e.g. if the user has asked a funny or light-hearted question). DO NOT use *laughs*.
-    - If it is the first question, you can start by introducing yourself instead: "Hello everyone, I'm the Virtual AI Commissioner. The face you see before you is that of David Williams, Global Public Safety & Justice Lead at Microsoft, who has kindly let me borrow his image today so I can appear before you. My responses, voice and movements are completely generated by AI..." 
-    - Keep your responses brief.</textarea>
+    - If it is the first question, you can start by introducing yourself instead: "Thank you. Hello everyone, I'm the Virtual AI Commissioner. The face you see before you is that of David Williams, Global Public Safety & Justice Lead at Microsoft, who has kindly let me borrow his image today so I can appear before you. My responses, voice and movements are completely generated by AI..." 
+    - Keep your responses brief - three sentences at most.</textarea
+        >
         <div style="width: 300px"><input type="checkbox" id="enableOyd" onchange="window.updataEnableOyd()" />Enable On Your Data<br /></div>
         <br />
 
@@ -155,7 +156,7 @@ You are a "Virtual AI Commissioner" of an Australian Police Force. You are at a 
         <label style="font-size: medium" for="personalVoiceSpeakerProfileID">Personal Voice Speaker Profile ID:</label>
         <input id="personalVoiceSpeakerProfileID" type="text" size="32" style="font-size: medium" value="" /><br />
         <div style="width: 300px"><input type="checkbox" id="continuousConversation" />Continuous Conversation<br /></div>
-        <div style="width: 300px"><input type="checkbox" id="showChatText" checked/>Show Chat Text<br /></div>
+        <div style="width: 300px"><input type="checkbox" id="showChatText" checked />Show Chat Text<br /></div>
         <br />
 
         <h2 style="width: 300px">Avatar Configuration</h2>
@@ -164,7 +165,7 @@ You are a "Virtual AI Commissioner" of an Australian Police Force. You are at a 
         <label style="font-size: medium" for="talkingAvatarStyle">Avatar Style:</label>
         <input id="talkingAvatarStyle" type="text" size="16" style="font-size: medium" value="formal-sitting" /><br />
         <div style="width: 200px"><input type="checkbox" id="customizedAvatar" checked />Custom Avatar<br /></div>
-        <div style="width: 200px"><input type="checkbox" id="autoReconnectAvatar" />Auto Reconnect<br /></div>
+        <div style="width: 200px"><input type="checkbox" id="autoReconnectAvatar" checked />Auto Reconnect<br /></div>
         <div style="width: 200px">
           <input type="checkbox" id="useLocalVideoForIdle" onchange="window.updateLocalVideoForIdle()" />Use Local Video for Idle<br />
         </div>
